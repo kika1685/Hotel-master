@@ -38,8 +38,9 @@ $(document).ready(function(){
 			var di=$('#resDia').val();
 			
 			if(estaConectado())
-				var a;//subir los datos
+				alert('mk');//var a; subir los datos
 			else{
+				alert('hola');
 				//guardar localmente}
 				guardarReserva(th,pr,ha,di);
 				guardarHistorial(th,pr,ha,di);
