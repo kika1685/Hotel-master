@@ -39,12 +39,14 @@ $(document).ready(function(){
 			
 			if(estaConectado())
 				var a;//subir los datos
-			else
+			else{
 				//guardar localmente}
 				guardarReserva(th,pr,ha,di);
 				guardarHistorial(th,pr,ha,di);
+			}
 		});
 		//sincronizar reservas
+		alert('kika');
 		document.addEventListener("online", function(){
 			leerReservas();
 			}, false);
