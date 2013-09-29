@@ -47,7 +47,7 @@ $(document).ready(function(){
 			
 		});
 		//sincronizar reservas
-		alert('kika');
+		
 		document.addEventListener("online", function(){
 			leerReservas();
 			}, false);
