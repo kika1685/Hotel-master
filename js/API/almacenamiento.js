@@ -24,3 +24,55 @@ function guardarReserva(th,pr,ha,di){
 				navigator.notification.alert('Esperando Conexion a Internet',null,'Datos Guardados Localmente','Aceptar');
 			});
 }
+
+function guardarHistorial(th,pr,ha,di){
+	accesoBD().transaction(function(tx){
+		 tx.executeSQL('CREATE TABLE IF NOT EXISTS historial(id unique,th,pr,ha,di)');
+		 tx.executeSQL('INSERT INTO historial(th,pr,ha,di) VALUES("'+th+'","'+pr+'","'+ha+'","'+di+'")');
+		},function(err){
+			alert('Error:'+err.code);
+		  },function(){
+			  navigator.notification.alert('Historial Guardado',null,'Historial','Aceptar');
+			});	
+}
+function leerReservas(){
+	accesoBD().transaction(function(tx){
+		tx.executeSQL('SELECT * FROM reservas',[],function(tx2,res){
+			var largo= res.rows.length;
+			for(i=0;i<largo;i++){
+				var th=res.rows.item(i).th;
+				var pr=res.rows.item(i).pr;
+				var ha=res.rows.item(i).ha;
+				var di=res.rows.item(i).di;
+				alert(th+'\n'+pr+'\n'+ha+'\n'+di);
+			 }
+			},function(err){
+				alert('ERROR:'+err.code);
+				});
+		},function(err){
+			alert('Error:'+err.code);
+			},function(){
+				var a;
+			  });
+}
+
+function leerHstorial(){
+	accesoBD().transaction(function(tx){
+		tx.executeSQL('SELECT * FROM historial',[],function(tx2,res){
+			var largo= res.rows.length;
+			for(i=0;i<largo;i++){
+				var th=res.rows.item(i).th;
+				var pr=res.rows.item(i).pr;
+				var ha=res.rows.item(i).ha;
+				var di=res.rows.item(i).di;
+				alert(th+'\n'+pr+'\n'+ha+'\n'+di);
+			 }
+			},function(err){
+				alert('ERROR:'+err.code);
+				});
+		},function(err){
+			alert('Error:'+err.code);
+			},function(){
+				var a;
+			  });
+}
