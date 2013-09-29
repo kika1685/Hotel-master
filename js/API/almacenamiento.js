@@ -56,17 +56,22 @@ function leerReservas(){
 			  });
 }
 
-function leerHstorial(){
+function leerHistorial(){
 	accesoBD().transaction(function(tx){
 		tx.executeSQL('SELECT * FROM historial',[],function(tx2,res){
 			var largo= res.rows.length;
+			var tabla='<table>';
+			tabla+='<tr><td>T. Hab</td><td>Pers.</td><td>Habs.</td><td>Dias</td></tr>';
 			for(i=0;i<largo;i++){
 				var th=res.rows.item(i).th;
 				var pr=res.rows.item(i).pr;
 				var ha=res.rows.item(i).ha;
 				var di=res.rows.item(i).di;
-				alert(th+'\n'+pr+'\n'+ha+'\n'+di);
+				tabla+='<tr><td>'+th+'</td><td>'+pr+'</td><td>'+ha+'</td><td>'+di+'</td></tr>';
+				//alert(th+'\n'+pr+'\n'+ha+'\n'+di);
 			 }
+			tabla+='</table>';
+			$('#historial div[data-role=content]').html(tabla);
 			},function(err){
 				alert('ERROR:'+err.code);
 				});

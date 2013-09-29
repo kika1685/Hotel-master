@@ -38,18 +38,25 @@ $(document).ready(function(){
 			var di=$('#resDia').val();
 			
 			if(estaConectado())
-				alert('mk');//var a; subir los datos
-			else{
-				alert('hola');
+				var a; //subir los datos
+			else
+				
 				//guardar localmente}
 				guardarReserva(th,pr,ha,di);
 				guardarHistorial(th,pr,ha,di);
-			}
+			
 		});
 		//sincronizar reservas
 		alert('kika');
 		document.addEventListener("online", function(){
 			leerReservas();
 			}, false);
+		//leer historial
+		$('#page div[data-role=content] ul[data-role=listview] li:eq(1)').tap(function(){
+			leerHistorial();	
+		});	
 		}, false);
+		
+		
+		
 });
